@@ -21,6 +21,6 @@
     - name: Send notification message via Slack
       slack:
         token: "{{ slack_token }}"
-        msg: '{"content": "Reboot required on {{ inventory_hostname }}"}'
+        msg: '{"Reboot required on {{ inventory_hostname }}"}'
       delegate_to: localhost
       #when: reboot_required.stat.exists 
