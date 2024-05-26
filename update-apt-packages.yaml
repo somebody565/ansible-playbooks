@@ -18,13 +18,9 @@
       register: reboot_required
 
     # Send Slack message when reboot is required
-    - name: Send Slack message
-      uri:
-        url: "{{ slack_webhook_url }}"
-        method: POST
-        body_format: json
-        body: '{"content": "Reboot required on {{ inventory_hostname }}"}'
-        headers:
-          Content-Type: application/json
-        status_code: 204
-      when: reboot_required.stat.exists
+    - name: Send notification message via Slack
+      slack:
+        token: "{{ slack_token }}"
+        msg: '{"content": "Reboot required on {{ inventory_hostname }}"}'
+      delegate_to: localhost
+      #when: reboot_required.stat.exists 
