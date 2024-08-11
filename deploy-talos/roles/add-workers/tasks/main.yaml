@@ -14,4 +14,3 @@
   ansible.builtin.command:
     cmd: talosctl apply-config --insecure --nodes {{ worker_3 }} --file {{ config_directory }}/worker.yaml
   changed_when: true
-  
