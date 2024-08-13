@@ -19,6 +19,7 @@
 
     # Send Slack message when reboot is required
     - name: Send notification message via Slack
+      become: true
       slack:
         token: "{{ slack_token }}"
         msg: 'Reboot required on {{ inventory_hostname }}'
