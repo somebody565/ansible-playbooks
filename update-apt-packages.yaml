@@ -23,5 +23,5 @@
       slack:
         token: "{{ slack_token }}"
         msg: 'Reboot required on {{ inventory_hostname }}'
-      delegate_to: localhost
+      #delegate_to: localhost
       when: reboot_required.stat.exists
