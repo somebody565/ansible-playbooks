@@ -1,0 +1,24 @@
+- name: Update packages
+  ansible.builtin.apt:
+    upgrade: true
+    update_cache: true
+
+- name: Add fastfetch repository
+  ansible.builtin.apt_repository:
+    repo: 'ppa:zhangsongcui3371/fastfetch'
+
+- name: Install packages
+  ansible.builtin.apt:
+    name:
+      - eza
+      - curl
+      - gcp
+      - fastfetch
+      - stow
+      - zsh
+      - git
+      - htop
+      - btop
+      - iftop
+      - zoxide
+    update_cache: true

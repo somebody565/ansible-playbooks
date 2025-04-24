@@ -1,0 +1,41 @@
+- name: Set timezone
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - set-timezone
+
+- name: Update and install packages
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - update-and-install-packages
+
+- name: Setup shell config
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - setup-shell
+
+- name: Install starship
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - rolehippie.starship
+
+- name: Install Docker
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - install-docker
+
+- name: Reboot if needed
+  hosts: all
+  gather_facts: true
+  become: true
+  roles:
+    - reboot-if-needed

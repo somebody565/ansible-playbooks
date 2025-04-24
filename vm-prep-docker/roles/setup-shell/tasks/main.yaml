@@ -1,0 +1,25 @@
+- name: Change user shell to zsh
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: /usr/bin/zsh
+
+- name: Clone dotfiles repo from GitHub
+  ansible.builtin.git:
+    repo: https://github.com/somebody565/dotfiles.git
+    dest: /home/{{ ansible_user }}/dotfiles
+
+- name: Run stow
+  shell: "cd /home/{{ ansible_user }}/dotfiles && stow fastfetch --verbose=2 --no-folding -R && stow zshrc --verbose=2 --no-folding -R && stow starship --verbose=2 --no-folding -R"
+  register: result
+  changed_when: 'result.stderr is search("LINK: ")'
+
+- name: Test for fastfetch in profile file
+  shell: grep -c "fastfetch" /etc/profile || true
+  register: test_fastfetch
+
+- name: Add fastfetch to profile file
+  lineinfile:
+    dest: /etc/profile
+    line: fastfetch
+  when: test_fastfetch.stdout == "0"
