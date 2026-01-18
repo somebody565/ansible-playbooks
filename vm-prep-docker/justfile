@@ -1,0 +1,7 @@
+# Install requirements
+install:
+	ansible-galaxy install -r collection/requirements.yaml
+
+# Prep 
+prep ip:
+	ansible-playbook vm-prep-docker.yaml -i {{ip}}, -u ubuntu
