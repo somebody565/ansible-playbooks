@@ -1,0 +1,4 @@
+# playbook.yml
+- hosts: all
+  tasks:
+    - include_tasks: tasks/manage_ssh_keys.yml
