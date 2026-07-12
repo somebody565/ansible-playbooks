@@ -6,6 +6,9 @@
 - name: Add fastfetch repository
   ansible.builtin.apt_repository:
     repo: 'ppa:zhangsongcui3371/fastfetch'
+  when:
+    - ansible_distribution == "Ubuntu"
+    - ansible_distribution_version is version('26.04', '<')
 
 - name: Install packages
   ansible.builtin.apt:
