@@ -1,8 +1,8 @@
 ---
 - hosts: all
+  remote_user: ubuntu
 
   tasks:
-
     - name: Prune non-dangling, and dangling images
       community.docker.docker_prune:
         containers: false
